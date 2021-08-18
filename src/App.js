@@ -1,7 +1,7 @@
 import Web3 from 'web3'
 // import Web3EthContract from 'web3-eth-contract'
 import React, { useEffect, useState } from 'react';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap'
+import { Button, Container, Row, Col, Form, FloatingLabel } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Common from '@ethereumjs/common';
 import { Transaction } from '@ethereumjs/tx';
@@ -144,7 +144,7 @@ function App() {
       const decimalToken = await Erc20Contract.methods.decimals().call();
       const sendAmount = new BigNumber(amount).multipliedBy(Math.pow(10, decimalToken))
 
-      const data = Erc20Contract.methods.transfer(formCallSC.address, sendAmount.toFixed());
+      const data = Erc20Contract.methods.transfer(address, sendAmount.toFixed());
       // 2. Create Tx params
       const nonce = await web3.eth.getTransactionCount(user1.address, 'pending');
       const price = await web3.eth.getGasPrice();
@@ -243,17 +243,18 @@ function App() {
               return false;
             }
           }>
-            Call smart contract: 
+            Call smart contract:
             <Form.Group className="mb-3">
-              <Form.Label>Token</Form.Label>
-              <Form.Select value={formCallSC.token} onChange={e => {
-                setFormCallSC({ ...formCallSC, token: e.target.value })
-              }}>
-                <option value={""}></option>
-                {listToken.map(v =>
-                  <option value={v}>SINI</option>
-                )}
-              </Form.Select>
+              <FloatingLabel controlId="floatingSelect" label="Token">
+                <Form.Select value={formCallSC.token} onChange={e => {
+                  setFormCallSC({ ...formCallSC, token: e.target.value })
+                }}>
+                  <option value={""}></option>
+                  {listToken.map(v =>
+                    <option value={v}>SUSHI</option>
+                  )}
+                </Form.Select>
+              </FloatingLabel>
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>
