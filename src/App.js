@@ -147,7 +147,7 @@ function App() {
           debugger;
         });
     } catch (error) {
-      setLoading(true);
+      setLoading(false);
       console.log(error);
     }
   };
@@ -220,7 +220,7 @@ function App() {
           debugger;
         });
     } catch (error) {
-      setLoading(true);
+      setLoading(false);
       console.log(error);
     }
   };
